@@ -29,7 +29,7 @@
 				}
 					echo '<img src="'.$uploads['baseurl'].'/'.$custom.'" alt="'. get_the_title().'"/>';			
 				echo '</a></div>'; //.post-archive-thumbnail apod.
-			echo '</div>' //.col-xs-4
+			echo '</div>'; //.col-xs-4
 		}
 		else { // post nemá thumbnail
 			echo '<div class="col-xs-4">';		
@@ -43,7 +43,7 @@
 				
 					echo '<img src="'.get_template_directory_uri().'/images/no-thumbnail.png" alt="'. get_the_title().'"/>';			
 				echo '</a></div>'; //.post-archive-thumbnail apod.
-			echo '</div>' //.col-xs-4
+			echo '</div>'; //.col-xs-4
 		}
 		echo '<div class="col-xs-8">';
 			
