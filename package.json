@@ -1,0 +1,28 @@
+{
+	"name": "wp-theme-isbrno",
+	"version": "3.0.1",
+	"description": "The WordPress theme for the public Website of Instruktoři Brno ",
+	"author": "Zbyšek Podhrázský, Martin Ukrop",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"Instruktori Brno"
+	],
+	"homepage": "https://github.com/InstruktoriBrno/wp-theme-isbrno#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/InstruktoriBrno/wp-theme-isbrno.git"
+	},
+	"bugs": {
+		"url": "https://github.com/InstruktoriBrno/wp-theme-isbrno/issues"
+	},
+	"devDependencies": {
+		"@wordpress/browserslist-config": "^2.6.0",
+		"@wordpress/scripts": "^5.0.0",
+		"stylelint-a11y": "^1.2.1"
+	},
+	"scripts": {
+		"lint:css": "wp-scripts lint-style 'style.css' 'style.nordic.css' 'rtl.css' 'layouts/*.css' 'inc/*.css'",
+		"lint:js": "wp-scripts lint-js 'js/*.js'",
+		"lint:pkg-json": "wp-scripts lint-pkg-json"
+	}
+}
