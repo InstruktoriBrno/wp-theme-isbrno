@@ -11,7 +11,10 @@ get_header();
 	<div id="primary" class="content-area image-attachment">
 		<main id="main" class="site-main" role="main">
 
-		<?php while ( have_posts() ) : the_post(); ?>
+		<?php 
+		while ( have_posts() ) :
+			the_post(); 
+			?>
 
 			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<header class="entry-header">
@@ -65,8 +68,8 @@ get_header();
 
 				<footer class="entry-meta">
 					<?php
-						if ( comments_open() && pings_open() ) : // Comments and trackbacks open
-							printf( __( '<a class="comment-link" href="#respond" title="Post a comment">Post a comment</a> or leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'instruktori' ), esc_url( get_trackback_url() ) );
+					if ( comments_open() && pings_open() ) : // Comments and trackbacks open
+						printf( __( '<a class="comment-link" href="#respond" title="Post a comment">Post a comment</a> or leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'instruktori' ), esc_url( get_trackback_url() ) );
 						elseif ( ! comments_open() && pings_open() ) : // Only trackbacks open
 							printf( __( 'Comments are closed, but you can leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'instruktori' ), esc_url( get_trackback_url() ) );
 						elseif ( comments_open() && ! pings_open() ) : // Only comments open
@@ -76,14 +79,15 @@ get_header();
 						endif;
 
 						edit_post_link( __( 'Edit', 'instruktori' ), ' <span class="edit-link">', '</span>' );
-					?>
+						?>
 				</footer><!-- .entry-meta -->
 			</article><!-- #post-## -->
 
 			<?php
 				// If comments are open or we have at least one comment, load up the comment template
-				if ( comments_open() || '0' != get_comments_number() )
-					comments_template();
+			if ( comments_open() || '0' != get_comments_number() ) {
+				comments_template();
+			}
 			?>
 
 		<?php endwhile; // end of the loop. ?>

@@ -2,92 +2,90 @@
 /**
  * Výpis jednoho excerptu akce s kalendářem (akce)
  *
- *
  * @package Persona Studio
  * @subpackage Instuktoři
- *
-*/
+ */
 
 				
-	$akce_from_timestamp = get_post_meta($post->ID, 'akce_from', TRUE); 
-	$akce_to_timestamp = get_post_meta($post->ID, 'akce_to', TRUE); 
-	$akce_url = get_post_meta($post->ID, 'akce_url', TRUE); 
-	$akce_from_time = get_post_meta($post->ID, 'akce_from_time', TRUE); 
-	$akce_place = get_post_meta($post->ID, 'akce_place', TRUE); 
-	$akce_map = get_post_meta($post->ID, 'akce_map', TRUE); 
+	$akce_from_timestamp = get_post_meta( $post->ID, 'akce_from', true ); 
+	$akce_to_timestamp   = get_post_meta( $post->ID, 'akce_to', true ); 
+	$akce_url            = get_post_meta( $post->ID, 'akce_url', true ); 
+	$akce_from_time      = get_post_meta( $post->ID, 'akce_from_time', true ); 
+	$akce_place          = get_post_meta( $post->ID, 'akce_place', true ); 
+	$akce_map            = get_post_meta( $post->ID, 'akce_map', true ); 
 									
 	echo '<div class="row">';
 		echo '<div class="col-sm-9">';
 			
-			the_title('<h1>', '</h1>');
+			the_title( '<h1>', '</h1>' );
 
 			the_content();
 			
-			if(!empty($akce_url)){
-				echo '<a href="'.$akce_url.'" class="akce-more">Více informací naleznete na webu akce &gt;</a>';
-			}
+if ( ! empty( $akce_url ) ) {
+	echo '<a href="' . $akce_url . '" class="akce-more">Více informací naleznete na webu akce &gt;</a>';
+}
 			
 		echo '</div>'; // .col-sm-9
 		echo '<div class="col-sm-3">';
-			?>
+?>
 
 			<div class="akce-meta-box">
-				<?php the_title('<h3>', '</h3>'); ?>
+				<?php the_title( '<h3>', '</h3>' ); ?>
 				<?php
 					$terms = get_the_terms( $post->ID, 'typ_akce' );
-					$count = count($terms);
-						if ( $count > 0 && is_array($terms) ){
-							$i=1;
-						 	foreach ( $terms as $term ) {
-								if ($i > 1) {
-									$category_list.=', ';
-								}
-								$category_list.=$term->name;
-								
-								$i++;
-							}
+					$count = count( $terms );
+				if ( $count > 0 && is_array( $terms ) ) {
+					$i = 1;
+					foreach ( $terms as $term ) {
+						if ( $i > 1 ) {
+							$category_list .= ', ';
 						}
-					echo '<strong>Typ akce: </strong>'.$category_list.'<br/><br/>';
+						$category_list .= $term->name;
+								
+						$i++;
+					}
+				}
+					echo '<strong>Typ akce: </strong>' . $category_list . '<br/><br/>';
 					$category_list = '';
 				?>
 
-				<?php echo '<strong>Začátek:</strong> '.date('d.m.Y', $akce_from_timestamp + 0); ?>
+				<?php echo '<strong>Začátek:</strong> ' . date( 'd.m.Y', $akce_from_timestamp + 0 ); ?>
 				<?php 
-					if (!empty ($akce_from_time)){
-						echo 'od '.$akce_from_time;
-					}
+				if ( ! empty( $akce_from_time ) ) {
+					echo 'od ' . $akce_from_time;
+				}
 				?>
 				<br/>
 				<?php 
-					if (!empty ($akce_to_timestamp)){
-						echo '<strong>Konec:</strong> '.date('d.m.Y', $akce_to_timestamp).'<br/>';
-					}
+				if ( ! empty( $akce_to_timestamp ) ) {
+					echo '<strong>Konec:</strong> ' . date( 'd.m.Y', $akce_to_timestamp ) . '<br/>';
+				}
 				?>
 				<br/>
 				<?php 
-					if (!empty($akce_place) OR !empty($akce_map)){
-						echo '<strong>Místo konání: </strong><br/>';
-						if (!empty($akce_place)){
-							echo $akce_place.'<br/>';
-						}
+				if ( ! empty( $akce_place ) or ! empty( $akce_map ) ) {
+					echo '<strong>Místo konání: </strong><br/>';
+					if ( ! empty( $akce_place ) ) {
+						echo $akce_place . '<br/>';
+					}
 
-						if (!empty($akce_map)){
-							echo '<iframe
+					if ( ! empty( $akce_map ) ) {
+						echo '<iframe
 							  width="243"
 							  height="126"
 							  frameborder="0" style="border:0"
-							  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAsM7njYRMm1N87q6cprTx3R8btUZN3oVI&q='.$akce_map.'&zoom=15" allowfullscreen>
+							  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAsM7njYRMm1N87q6cprTx3R8btUZN3oVI&q=' . $akce_map . '&zoom=15" allowfullscreen>
 							</iframe>';
-							/*
-							echo '<a href="https://maps.google.com/maps?q='.$akce_map.'" target="_blank"><img src="https://maps.google.com/maps/api/staticmap?center='.$akce_map.'&zoom=15&size=243x126&sensor=false" class="post-archive-thumbnail" alt="'.get_the_title().'"></a>';;
-							*/
+						/*
+						echo '<a href="https://maps.google.com/maps?q='.$akce_map.'" target="_blank"><img src="https://maps.google.com/maps/api/staticmap?center='.$akce_map.'&zoom=15&size=243x126&sensor=false" class="post-archive-thumbnail" alt="'.get_the_title().'"></a>';;
+						*/
 
-						}
 					}
+				}
 				?>
 			</div>
 
 			<?php
-		echo '</div>'; // .col-sm-3
-	echo '</div>'; //.row
-?>
+			echo '</div>'; // .col-sm-3
+			echo '</div>'; // .row
+			?>

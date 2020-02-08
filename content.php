@@ -36,8 +36,8 @@
 			<?php
 				/* translators: used between list items, there is a space after the comma */
 				$categories_list = get_the_category_list( __( ', ', 'instruktori' ) );
-				if ( $categories_list && instruktori_categorized_blog() ) :
-			?>
+			if ( $categories_list && instruktori_categorized_blog() ) :
+				?>
 			<span class="cat-links">
 				<?php printf( __( 'Posted in %1$s', 'instruktori' ), $categories_list ); ?>
 			</span>
@@ -46,8 +46,8 @@
 			<?php
 				/* translators: used between list items, there is a space after the comma */
 				$tags_list = get_the_tag_list( '', __( ', ', 'instruktori' ) );
-				if ( $tags_list ) :
-			?>
+			if ( $tags_list ) :
+				?>
 			<span class="tags-links">
 				<?php printf( __( 'Tagged %1$s', 'instruktori' ), $tags_list ); ?>
 			</span>

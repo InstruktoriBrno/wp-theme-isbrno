@@ -30,29 +30,30 @@
 				</h3>
 					<ul class="red">
 					<?php
-						$dnesni_datum = Date('U');
-						$args = array(
-		    				'post_type'  => 'akce',
+						$dnesni_datum = Date( 'U' );
+						$args         = array(
+							'post_type'   => 'akce',
 							'numberposts' => '8',
-						    'meta_key' => 'akce_from',
-						    'orderby' => 'meta_value_num', 
-						    'order' => 'ASC',
-							'meta_query' => array(
-						    	array(
-						           'key' => 'akce_from',
-							       'value' => $dnesni_datum,
-								   'type' => 'numeric',
-							       'compare' => '>=',
-							    )
-							)
-						);	
-						$lastposts = get_posts( $args );	
-						foreach($lastposts as $post) : setup_postdata($post); 
+							'meta_key'    => 'akce_from',
+							'orderby'     => 'meta_value_num', 
+							'order'       => 'ASC',
+							'meta_query'  => array(
+								array(
+									'key'     => 'akce_from',
+									'value'   => $dnesni_datum,
+									'type'    => 'numeric',
+									'compare' => '>=',
+								),
+							),
+						);  
+						$lastposts    = get_posts( $args );    
+						foreach ( $lastposts as $post ) :
+							setup_postdata( $post ); 
 								
-						the_title('<li><a href="'.get_permalink().'" title="'.get_the_excerpt().'">','</a></li>');
+							the_title( '<li><a href="' . get_permalink() . '" title="' . get_the_excerpt() . '">', '</a></li>' );
 
 						endforeach; 
-					?>
+						?>
 					</ul>
 				</div>
 				<div class="col-md-3">
@@ -62,7 +63,7 @@
 		</div><!-- .container -->
 	</footer><!-- #colophon -->
 	<footer id="dark" class="dark-footer hidden-print hidden-xs" role="contentinfo">
-		© <?php echo date("Y"); ?>, <a href="https://www.instruktori.cz">Instruktoři Brno, z.s.</a>, <a href="mailto:spenat@instruktori.cz">spenat@instruktori.cz</a>. Všechna práva vyhrazena. <a href="/zasady-zpracovani-osobnich-udaju">Zásady zpracování osobních údajů</a><br/>
+		© <?php echo date( 'Y' ); ?>, <a href="https://www.instruktori.cz">Instruktoři Brno, z.s.</a>, <a href="mailto:spenat@instruktori.cz">spenat@instruktori.cz</a>. Všechna práva vyhrazena. <a href="/zasady-zpracovani-osobnich-udaju">Zásady zpracování osobních údajů</a><br/>
 		Design a tvorba webových stránek Persona Studio [ <?php wp_loginout(); ?> ]
 	</footer><!-- #dark -->
 </div><!-- #page -->
