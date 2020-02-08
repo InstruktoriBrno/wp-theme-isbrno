@@ -1,0 +1,24 @@
+{
+	"name": "instruktoribrno/wp-theme-isbrno",
+	"type": "package",
+	"description": "The WordPress theme for the public Website of Instruktoři Brno",
+	"homepage": "https://github.com/InstruktoriBrno/wp-theme-isbrno",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=7.2"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+		"jakub-onderka/php-parallel-lint": "^1.0",
+		"wptrt/wpthemereview": "^0.2.0"
+	},
+	"scripts": {
+		"checkcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcs --runtime-set testVersion 5.6-",
+		"fixcs": "@php ./vendor/squizlabs/php_codesniffer/bin/phpcbf --runtime-set testVersion 5.6-",
+		"lint": "@php ./vendor/bin/parallel-lint --exclude .git --exclude vendor --exclude node_modules ."
+	},
+	"support": {
+		"issues": "https://github.com/InstruktoriBrno/wp-theme-isbrno/issues",
+		"source": "https://github.com/InstruktoriBrno/wp-theme-isbrno"
+	}
+}
