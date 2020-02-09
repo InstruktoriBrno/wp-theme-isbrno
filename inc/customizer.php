@@ -24,7 +24,7 @@ add_action( 'customize_register', 'instruktori_customize_register' );
  */
 function instruktori_customizer_secrets( $wp_customize ) {
 	$wp_customize->add_section( 'cd_secrets' , array(
-		'title'      => 'API keys and secrets',
+		'title'      => 'Přístupové tokeny',
 		'priority'   => 30,
 		) 
 	);
@@ -34,10 +34,11 @@ function instruktori_customizer_secrets( $wp_customize ) {
 		)
 	);
 	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'google_maps_api_key', array(
-		'label'      => 'Google Maps API key',
-		'section'    => 'cd_secrets',
-		'settings'   => 'google_maps_api_key',
-		'type'		 => 'text',
+		'label'      	=> 'API klíč pro Google Maps',
+		'description'	=> 'API klíč je potřebný pro správné fungování náhledových map akcí. Měl by být vytvořen pod účtem gadmin@instruktori.cz.',
+		'section'    	=> 'cd_secrets',
+		'settings'   	=> 'google_maps_api_key',
+		'type'		 	=> 'text',
 		) ) 
 	);
 }
