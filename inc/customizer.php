@@ -18,6 +18,32 @@ function instruktori_customize_register( $wp_customize ) {
 add_action( 'customize_register', 'instruktori_customize_register' );
 
 /**
+ * Add API keys and other secrets to theme settings.
+ * 
+ * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+ */
+function instruktori_customizer_secrets( $wp_customize ) {
+	$wp_customize->add_section( 'cd_secrets' , array(
+		'title'      => 'API keys and secrets',
+		'priority'   => 30,
+		) 
+	);
+	$wp_customize->add_setting( 'google_maps_api_key' , array(
+		'default'     => 'no-maps-api-aky',
+		'transport'   => 'refresh',
+		)
+	);
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'google_maps_api_key', array(
+		'label'      => 'Google Maps API key',
+		'section'    => 'cd_secrets',
+		'settings'   => 'google_maps_api_key',
+		'type'		 => 'text',
+		) ) 
+	);
+}
+add_action( 'customize_register', 'instruktori_customizer_secrets' );
+
+/**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function instruktori_customize_preview_js() {
