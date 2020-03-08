@@ -6,22 +6,6 @@
  */
 
 /**
- * Add support for WooCommerce to enable customizations
- */
-function mytheme_add_woocommerce_support() {
-	add_theme_support( 'woocommerce' );
-}
-add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
-
-/**
- * WooCommerce: Remove the breadcrumbs 
- */
-add_action( 'init', 'woo_remove_wc_breadcrumbs' );
-function woo_remove_wc_breadcrumbs() {
-    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
-}
-
-/**
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) ) {
@@ -176,6 +160,8 @@ function remove_menus() {
 }
 add_action( 'admin_menu', 'remove_menus' );
 
+// Include WooCommerce customizations
+require_once 'woocommerce/functions.php';
 
 /* POVOLENÍ PSEUDOHTML ELEMENTŮ V WIDGET TITLE */
 
