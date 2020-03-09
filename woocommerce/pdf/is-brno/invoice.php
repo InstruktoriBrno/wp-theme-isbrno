@@ -50,30 +50,39 @@
 		<td class="order-data">
 			<table>
 				<?php do_action( 'wpo_wcpdf_before_order_data', $this->type, $this->order ); ?>
+				<!-- Custom ordering of fields, due date added. -->
+				<tr class="order-number">
+					<th><?php _e( 'Order Number:', 'woocommerce-pdf-invoices-packing-slips' ); ?></th>
+					<td><?php $this->order_number(); ?></td>
+				</tr>
 				<?php if ( isset($this->settings['display_number']) ) { ?>
 				<tr class="invoice-number">
 					<th><?php _e( 'Invoice Number:', 'woocommerce-pdf-invoices-packing-slips' ); ?></th>
 					<td><?php $this->invoice_number(); ?></td>
 				</tr>
 				<?php } ?>
+				<!--
 				<?php if ( isset($this->settings['display_date']) ) { ?>
 				<tr class="invoice-date">
 					<th><?php _e( 'Invoice Date:', 'woocommerce-pdf-invoices-packing-slips' ); ?></th>
 					<td><?php $this->invoice_date(); ?></td>
 				</tr>
 				<?php } ?>
-				<tr class="order-number">
-					<th><?php _e( 'Order Number:', 'woocommerce-pdf-invoices-packing-slips' ); ?></th>
-					<td><?php $this->order_number(); ?></td>
-				</tr>
+				-->
 				<tr class="order-date">
 					<th><?php _e( 'Order Date:', 'woocommerce-pdf-invoices-packing-slips' ); ?></th>
 					<td><?php $this->order_date(); ?></td>
 				</tr>
+				<tr class="due-date">
+					<th>Datum splatnosti:</th>
+					<td><?php echo date_i18n( get_option( 'date_format' ), strtotime( $this->get_date() . ' + 14 days') ); ?></td>
+				</tr>
+				<!--
 				<tr class="payment-method">
 					<th><?php _e( 'Payment Method:', 'woocommerce-pdf-invoices-packing-slips' ); ?></th>
 					<td><?php $this->payment_method(); ?></td>
 				</tr>
+				-->
 				<?php do_action( 'wpo_wcpdf_after_order_data', $this->type, $this->order ); ?>
 			</table>			
 		</td>
@@ -132,6 +141,12 @@
 							<td class="price"><span class="totals-price"><?php echo $total['value']; ?></span></td>
 						</tr>
 						<?php endforeach; ?>
+						<!-- Payment method added here. -->
+						<tr class="payment-method">
+							<td class="no-borders"></td>
+							<th><?php _e( 'Payment Method:', 'woocommerce-pdf-invoices-packing-slips' ); ?></th>
+							<td><?php $this->payment_method(); ?></td>
+						</tr>
 					</tfoot>
 				</table>
 			</td>
