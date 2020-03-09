@@ -1,7 +1,7 @@
 /* Main Body */
 @page {
-	margin-top: 1cm;
-	margin-bottom: 3cm;
+	margin-top: 2cm;
+	margin-bottom: 2cm;
 	margin-left: 2cm;
 	margin-right: 2cm;
 }
@@ -102,6 +102,7 @@ td.header img {
 td.header {
 	font-size: 16pt;
 	font-weight: 700;
+	width: 1%;
 }
 
 td.shop-info {
