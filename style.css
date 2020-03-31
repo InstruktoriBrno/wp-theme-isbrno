@@ -599,6 +599,10 @@ h2.akce-headline {
 	font-weight: 700;
 }
 
+.no-top-margin {
+	margin-top: 0px !important;
+}
+
 .row-with-margin {
 	margin-bottom: 30px;
 }
