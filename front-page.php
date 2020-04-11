@@ -51,44 +51,32 @@ get_header(); ?>
 								
 								echo '<div class="col-md-4 col-sm-6">';
 									echo '<div class="akce-box">';
-								if ( has_post_thumbnail() ) {
-									$custom  = get_post_custom();
-									$custom  = get_post_meta( $custom['_thumbnail_id'][0], '_wp_attached_file', true );
-									$uploads = wp_upload_dir();
-											
-									echo '<div class="post-archive-thumbnail post-thumbnail thumbnail-type-' . get_post_type( $post->ID ) . ' hidden-xs">';
-									// if(!empty($akce_url)){
-									// echo '<a href="'.$akce_url.'" title="'.get_the_title().'" target="new">';
-									// }
-									// else{
-										echo '<a href="' . get_permalink() . '" title="' . get_the_title() . '">';
-									// }
-										echo '<img src="' . $uploads['baseurl'] . '/' . $custom . '" alt="' . get_the_title() . '"/>';         
-									echo '</a></div>'; // .post-archive-thumbnail apod.
-								} else { // post nemá thumbnail
-									echo '<div class="post-archive-thumbnail post-thumbnail thumbnail-type-' . get_post_type( $post->ID ) . ' hidden-xs">';
-									// if(!empty($akce_url)){
-									// echo '<a href="'.$akce_url.'" title="'.get_the_title().' target="new">';
-									// }
-									// else{
-										echo '<a href="' . get_permalink() . '" title="' . get_the_title() . '">';
-									// }
-										echo '<img src="' . get_template_directory_uri() . '/images/no-thumbnail.png" alt="' . get_the_title() . '"/>';            
-									echo '</a></div>'; // .post-archive-thumbnail apod.
-								}
+										echo '<div class="post-archive-thumbnail post-thumbnail thumbnail-type-' . get_post_type( $post->ID ) . ' hidden-xs">';
+										if(!empty($akce_url)){
+											echo '<a href="' . $akce_url . '" title="' . get_the_title() . '">';
+										} else {
+											echo '<a href="' . get_permalink() . '" title="' . get_the_title() . '">';
+										}
+										if ( has_post_thumbnail() ) {
+											$custom  = get_post_custom();
+											$custom  = get_post_meta( $custom['_thumbnail_id'][0], '_wp_attached_file', true );
+											$uploads = wp_upload_dir();
+											echo '<img src="' . $uploads['baseurl'] . '/' . $custom . '" alt="' . get_the_title() . '"/>';
+										} else {
+											echo '<img src="' . get_template_directory_uri() . '/images/no-thumbnail.png" alt="' . get_the_title() . '"/>';
+										}
+										echo '</a></div>'; // .post-archive-thumbnail apod.
 										echo '<div class="akce-padding">';
-											// if(!empty($akce_url)){
-											// the_title('<h3><a href="'.$akce_url.'" target="new">', '</a></h3>');
-											// }
-											// else{
+											if(!empty($akce_url)){
+												the_title('<h3><a href="' . $akce_url . '">', '</a></h3>');
+											} else {
 												the_title( '<h3><a href="' . get_permalink() . '">', '</a></h3>' );
-											// }
-
-								if ( ! empty( $akce_from_timestamp ) and empty( $akce_to_timestamp ) ) {
-									echo date( 'd.m.Y', $akce_from_timestamp );
-								} elseif ( ! empty( $akce_from_timestamp ) and ! empty( $akce_to_timestamp ) ) {
-									echo date( 'd.m.', $akce_from_timestamp ) . ' - ' . date( 'd.m.Y', $akce_to_timestamp );
-								}
+											}
+										if ( ! empty( $akce_from_timestamp ) and empty( $akce_to_timestamp ) ) {
+											echo date( 'd.m.Y', $akce_from_timestamp );
+										} elseif ( ! empty( $akce_from_timestamp ) and ! empty( $akce_to_timestamp ) ) {
+											echo date( 'd.m.', $akce_from_timestamp ) . ' - ' . date( 'd.m.Y', $akce_to_timestamp );
+										}
 
 											the_excerpt();
 
@@ -96,12 +84,13 @@ get_header(); ?>
 											echo '<div class="akce-links">';
 												echo '<div class="row">';
 													echo '<div class="col-sm-6"><div class="alignleft">';
-								if ( ! empty( $akce_url ) ) {
-									echo '<a href="' . $akce_url . '" class="akce-more" target="new">Web akce&nbsp;&gt;</a>';
-								}
 													echo '</div></div>';
 													echo '<div class="col-sm-6">';
-														echo '<a href="' . get_permalink() . '" class="akce-more">Detail&nbsp;&gt;</a>';    
+													if(!empty($akce_url)){
+														echo '<a href="' . $akce_url . '" class="akce-more" target="new">Web akce&nbsp;&gt;</a>';
+													} else {
+														echo '<a href="' . get_permalink() . '" class="akce-more">Víc info&nbsp;&gt;</a>';  
+													}
 													echo '</div>';
 												echo '</div>';
 										echo '</div>';
@@ -149,12 +138,16 @@ get_header(); ?>
 						echo '<tr><th>Název</th><th>Termín</th><th class="hidden-xs">Typ</th><th>Detail</th></tr>';
 
 						foreach ( $lastposts as $post ) :
-							setup_postdata( $post ); 
-							echo '<tr><td><a href="' . get_permalink() . '">' . get_the_title() . '</a></td>';
-							
+							setup_postdata( $post );
 							$akce_from_timestamp = get_post_meta( $post->ID, 'akce_from', true ); 
 							$akce_to_timestamp   = get_post_meta( $post->ID, 'akce_to', true ); 
 							$akce_url            = get_post_meta( $post->ID, 'akce_url', true ); 
+
+							if ( ! empty( $akce_url ) ) {
+								echo '<tr><td><a href="' . $akce_url . '">' . get_the_title() . '</a></td>';
+							} else {
+								echo '<tr><td><a href="' . get_permalink() . '">' . get_the_title() . '</a></td>';
+							}
 
 							echo '<td>';
 
@@ -188,12 +181,9 @@ get_header(); ?>
 							
 							if ( ! empty( $akce_url ) ) {
 								echo '<a class="detail-button" target="new" href="' . $akce_url . '">WEB &gt;</a> ';
+							} else {
+								echo '<a class="detail-button" href="' . get_permalink() . '">DETAIL &gt;</a>';
 							}
-							
-								echo '<a class="detail-button" href="' . get_permalink() . '">DETAIL &gt;</a>'; 
-							
-
-							
 							echo '</div></td>';
 							echo '</tr>';
 
