@@ -66,7 +66,7 @@ add_action('woocommerce_checkout_update_order_meta', 'checkout_update_order_meta
  * Display PR feedback field value on the order edit page
  */
 function admin_order_meta_display_pr_feedback($order){
-        echo '<p><strong>'.__('Jak se dozvěděli o Fondu 2').':</strong> ' . get_post_meta( $order->id, 'PR feedback', true ) . '</p>';
+        echo '<p><strong>'.__('Jak se dozvěděli o Fondu 2').':</strong><br/>' . get_post_meta( $order->id, 'PR feedback', true ) . '</p>';
 }
 add_action( 'woocommerce_admin_order_data_after_shipping_address', 'admin_order_meta_display_pr_feedback', 10, 1 );
 
