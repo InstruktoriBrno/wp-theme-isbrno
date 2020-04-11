@@ -679,3 +679,9 @@ ul.red li {
 .akce-meta-box h3 {
 	margin: 0;
 }
+
+/* WooCommerce eShop */
+
+#ship-to-different-address span {
+	font-weight: normal;
+}

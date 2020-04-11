@@ -39,6 +39,7 @@ add_filter('woocommerce_checkout_fields', 'add_bootstrap_to_checkout_fields' );
  * Add PR feedback field to the checkout page
  */
 function checkout_add_pr_feedback($checkout) {
+    echo '<h3 id="after_customer_details">Dodatečné informace</h3>';
     woocommerce_form_field('pr_feedback', array(
         'type' => 'text',
         'required' => true,
