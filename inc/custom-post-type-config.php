@@ -22,6 +22,7 @@ function custom_post_types_init() {
 		'description'         => __( 'Akce', 'instruktori' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
+		'show_in_rest'        => true, # Enable Gutenberg support
 		'taxonomies'          => array( 'typ_akce' ),
 		'hierarchical'        => false,
 		'public'              => true,
@@ -208,6 +209,7 @@ function add_custom_taxonomies() {
 		'labels'            => $labels,
 		'hierarchical'      => true,
 		'public'            => true,
+		'show_in_rest'      => true,
 		'show_ui'           => true,
 		'show_admin_column' => true,
 		'show_in_nav_menus' => true,
