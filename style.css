@@ -686,7 +686,13 @@ ul.red li {
 	font-weight: normal;
 }
 
+/* Fix password field for protected materials page */
 .post-password-required .form-control {
 	display: inline;
 	margin: 0 1em;
+}
+
+/* Fix terms and conditions checkbox */
+.woocommerce-terms-and-conditions-wrapper #terms {
+	position: relative;
 }
