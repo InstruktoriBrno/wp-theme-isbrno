@@ -53,6 +53,16 @@ function checkout_add_pr_feedback($checkout) {
 add_action('woocommerce_before_order_notes', 'checkout_add_pr_feedback');
 
 /**
+ * Check for PR feedback to be filled in
+ */
+function checkout_check_pr_feedback() {
+    if ( ! $_POST['pr_feedback'] ) {
+        wc_add_notice( __( 'Prosím napište, jak jste se dozvěděli o Fondu her 2.' ), 'error' );
+    }
+}
+add_action('woocommerce_checkout_process', 'checkout_check_pr_feedback');
+
+/**
  * Update the value given in PR feedback field
  */
 function checkout_update_order_meta_pr_feedback($order_id) {
