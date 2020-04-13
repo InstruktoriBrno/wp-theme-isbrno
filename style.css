@@ -685,3 +685,8 @@ ul.red li {
 #ship-to-different-address span {
 	font-weight: normal;
 }
+
+.post-password-required .form-control {
+	display: inline;
+	margin: 0 1em;
+}

@@ -80,4 +80,33 @@ function admin_order_meta_display_pr_feedback($order){
 }
 add_action( 'woocommerce_admin_order_data_after_shipping_address', 'admin_order_meta_display_pr_feedback', 10, 1 );
 
+
+function my_password_form() {
+    global $post;
+    $label = 'pwbox-'.( empty( $post->ID ) ? rand() : $post->ID );
+    $o = '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" method="post">
+    ' . __( "To view this protected post, enter the password below:" ) . '
+    <label for="' . $label . '">' . __( "Password:" ) . ' </label><input name="post_password" id="' . $label . '" type="password" size="20" maxlength="20" /><input type="submit" name="Submit" value="' . esc_attr__( "Submit" ) . '" />
+    </form>
+    ';
+    return $o;
+}
+
+/**
+ * Adjust the password text for game materials
+ */
+function change_password_protected_text($output) {
+    if ( is_page( 'materialy-ke-hram' ) ) {
+        global $post;
+        $label = 'pwbox-'.( empty( $post->ID ) ? rand() : $post->ID );
+        $output = '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" method="post">
+        ' . "<p>Tato stránka je určena pouze pro držitele Fondu her 2.</p><p>Heslo k materálům je poslední slovo na stránce 132 v knižím vydání Fondu her 2 (malými písmeny, bez diakritiky).</p>" . '
+        <label for="' . $label . '">' . __( "Heslo:" ) . ' </label><input class="form-control" name="post_password" id="' . $label . '" type="password" size="20" maxlength="20" /><input class="btn" type="submit" name="Submit" value="' . esc_attr__( "Odemknout" ) . '" />
+        </form>
+        ';
+    }
+    return $output;
+}
+add_filter( 'the_password_form', 'change_password_protected_text');
+
 ?>
