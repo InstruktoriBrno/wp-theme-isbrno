@@ -258,6 +258,8 @@ function pagination( $pages = '', $range = 4 ) {
 	}
 }
 
-
-
-
+/**
+* Removes or edits the 'Protected:' part from posts titles
+*/
+function remove_protected_text() { return __('%s'); }
+add_filter( 'protected_title_format', 'remove_protected_text' );
