@@ -109,4 +109,22 @@ function change_password_protected_text($output) {
 }
 add_filter( 'the_password_form', 'change_password_protected_text');
 
+/**
+ * Remove links to product pages
+ */
+function product_invisible() {
+    return false;
+}
+add_filter( 'woocommerce_product_is_visible','product_invisible');
+
+/**
+ * Remove single product pages
+ */
+function hide_product_page($args) {
+    $args["publicly_queryable"]=false;
+    $args["public"]=false;
+    return $args;
+}
+add_filter( 'woocommerce_register_post_type_product','hide_product_page',12,1);
+
 ?>
