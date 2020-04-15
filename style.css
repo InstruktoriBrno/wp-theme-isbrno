@@ -690,6 +690,7 @@ ul.red li {
 .post-password-required .form-control {
 	display: inline;
 	margin: 0 1em;
+	width: auto;
 }
 
 /* Fix terms and conditions checkbox */
