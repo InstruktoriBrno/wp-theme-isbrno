@@ -120,11 +120,12 @@ add_filter( 'woocommerce_product_is_visible','product_invisible');
 /**
  * Remove single product pages
  */
-function hide_product_page($args) {
-    $args["publicly_queryable"]=false;
-    $args["public"]=false;
-    return $args;
+function hide_product_pages() {
+    if ( is_product() ) {
+        wp_redirect( home_url() );
+        exit;
+    }
 }
-add_filter( 'woocommerce_register_post_type_product','hide_product_page',12,1);
+add_action( 'template_redirect', 'hide_product_pages' );
 
 ?>
