@@ -26,8 +26,17 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 <p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
 <p>Děkujeme za Vaši objednávku. Přehled objednávky naleznete níže, fakturu v příloze.</p>
 <h2>Jak to bude probíhat dál?</h2>
-<p>PHP shipping: <?php echo $order->get_shipping_method(); ?></p>
-<p>Další text tady.</p>
+<?php if ( in_array($order->get_shipping_method(), array("Zásilkovna", "Doručení na adresu", "Zásielkovňa (Slovensko)", "Doručení na adresu (Slovensko)")) ) {
+	echo '<p>Pokud jste zvolili platbu převodem, nejprve prosím odešlete platbu za objednávku (detaily viz níže). Po přijetí Vaší platby objednávku zabalíme a odešleme. Pokud jste zvolili dobírku, platíte samozřejmě až při převzetí.</p>';
+	echo '<p>Jakmile knížku odešleme na Zásilkovnu, přijde Vám email s informací o odeslání. Balíčky odesíláme 1&ndash;2x týdně.</p>';
+} else {
+	echo '<ol>';
+	echo '<li>Nejprve prosím odešlete platbu za objednávku (detaily viz níže).</li>';
+	echo '<li>Po zaplacení objednávky kontaktujte Alču Pikulovou emailem na <a href="alena.pikulova@gmail.com">alena.pikulova@gmail.com</a> a domluvte se s ní na termínu vyzvednutí knihy. Preferovaný čas, kdy se pro knihu po domluvě můžete zastavit je úterý 10&ndash;11h nebo čtvrtek 17&ndash;18h.';
+	echo '<li>Vyzvedněte si knížku dle domluvy. Adresa osobního vyzvednutí je <a href="https://mapy.cz/s/fagesetoga" target="_blank">Všetičkova 13, Brno</a>.</li>';
+	echo '</ol>';
+} ?>
+<h2>Informace o platbě</h2>
 
 <?php
 
