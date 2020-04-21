@@ -36,6 +36,18 @@ function add_bootstrap_to_checkout_fields($fields) {
 add_filter('woocommerce_checkout_fields', 'add_bootstrap_to_checkout_fields' );
 
 /**
+ * Add custom validation to the phone number
+ */
+add_action('woocommerce_checkout_process', 'custom_validate_billing_phone');
+function custom_validate_billing_phone() {
+    $phone_no_whitespace = preg_replace('/\s/', '', $_POST['billing_phone']);
+    $is_correct = preg_match('/^\+[0-9]{10,12}$/', $phone_no_whitespace);
+    if ( !$is_correct) {
+        wc_add_notice( __( 'Zadejte prosím platné <strong>telefonní číslo</strong> i s předvolbou (např. +420 776 123 456).' ), 'error' );
+    }
+}
+
+/**
  * Add PR feedback field to the checkout page
  */
 function checkout_add_pr_feedback($checkout) {
@@ -57,7 +69,7 @@ add_action('woocommerce_before_order_notes', 'checkout_add_pr_feedback');
  */
 function checkout_check_pr_feedback() {
     if ( ! $_POST['pr_feedback'] ) {
-        wc_add_notice( __( 'Prosím napište, jak jste se dozvěděli o Fondu her 2.' ), 'error' );
+        wc_add_notice( __( 'Prosím napište, <strong>jak jste se dozvěděli o Fondu her 2</strong>.' ), 'error' );
     }
 }
 add_action('woocommerce_checkout_process', 'checkout_check_pr_feedback');
