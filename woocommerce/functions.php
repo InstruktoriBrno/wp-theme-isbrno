@@ -12,6 +12,14 @@ function mytheme_add_woocommerce_support() {
 add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
 
 /**
+ * Adjust eshop to send subtotal to Zasilkovna (solves the free deliveries)
+ */
+function extend_zasilkovna_ticket_value( $order ){
+    return $order->get_subtotal();
+}
+add_filter( 'zasilkovna_ticket_value', 'extend_zasilkovna_ticket_value' );
+
+/**
  * Remove WooCommerce breadcrumbs 
  */
 function woo_remove_wc_breadcrumbs() {
