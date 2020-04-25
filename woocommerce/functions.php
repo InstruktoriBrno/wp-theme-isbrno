@@ -12,6 +12,14 @@ function mytheme_add_woocommerce_support() {
 add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
 
 /**
+ * Set orders to "on hold" after payment.
+ */
+function set_on_hold_status( $order_status, $order_id ) {
+    return 'on-hold';
+}
+add_filter( 'woocommerce_payment_complete_order_status', 'set_on_hold_status', 10, 2 );
+
+/**
  * Adjust eshop to send subtotal to Zasilkovna (solves the free deliveries)
  */
 function extend_zasilkovna_ticket_value( $order ){
