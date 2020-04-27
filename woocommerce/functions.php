@@ -22,11 +22,10 @@ add_filter( 'woocommerce_payment_complete_order_status', 'set_on_hold_status', 1
 /**
  * Adjust eshop to send subtotal to Zasilkovna (solves the free deliveries)
  */
-function extend_zasilkovna_ticket_value( $order ){
-    /* return $order->get_subtotal(); */
-    return (float) 350;
+function extend_zasilkovna_ticket_value( $price, $order, $zasilkovna_option, $zasilkovna_id){
+    return $order->get_subtotal();
 }
-add_filter( 'zasilkovna_ticket_value', 'extend_zasilkovna_ticket_value' );
+add_filter( 'zasilkovna_ticket_value', 'extend_zasilkovna_ticket_value', 10, 4 );
 
 /**
  * Remove WooCommerce breadcrumbs 
