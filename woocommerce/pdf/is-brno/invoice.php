@@ -19,9 +19,7 @@
 	</tr>
 </table>
 
-<h1 class="document-type-label">
-<?php if( $this->has_header_logo() ) echo $this->get_title(); ?>
-</h1>
+<h1 class="document-type-label">Faktura – daňový doklad</h1>
 
 <?php do_action( 'wpo_wcpdf_after_document_label', $this->type, $this->order ); ?>
 
