@@ -56,7 +56,7 @@ add_filter('woocommerce_checkout_fields', 'add_bootstrap_to_checkout_fields' );
  */
 function wc_billing_field_strings( $translated_text, $text, $domain ) {
     if ( 'woocommerce' === $domain && 'Company name' === $text ) {
-        $translated_text = 'Název firmy, IČ';
+        $translated_text = 'Název firmy, IČO';
     }
     return $translated_text;
 }
