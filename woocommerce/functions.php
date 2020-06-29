@@ -75,6 +75,60 @@ function custom_validate_billing_phone() {
 }
 
 /**
+ * Reorder billing fields (company name first)
+ */
+function billing_company_first( $checkout_fields ) {
+	$checkout_fields['billing']['billing_company']['priority'] = 5;
+	return $checkout_fields;
+}
+add_filter( 'woocommerce_checkout_fields', 'billing_company_first' );
+
+/**
+ * Add optional ICO field to the checkout page
+ */
+function checkout_add_ico($checkout) {
+    woocommerce_form_field('ico', array(
+        'type' => 'text',
+        'required' => false,
+        'class' => array('form-group form-row-wide'),
+        'input_class' => array('form-control'),
+        'label' => __('IČO organizace'),
+        ),
+    $checkout->get_value('ico'));
+}
+add_action('woocommerce_before_checkout_billing_form', 'checkout_add_ico');
+
+/**
+ * Add custom validation to ICO field
+ */
+function custom_validate_ico() {
+    $phone_no_whitespace = preg_replace('/\s/', '', $_POST['ico']);
+    $is_correct = preg_match('/^[0-9]{8}$/', $_POST['ico']);
+    if ( !$is_correct) {
+        wc_add_notice( __( '<strong>Zadané IČO</strong> není platné (nemá osm číslic).' ), 'error' );
+    }
+}
+add_action('woocommerce_checkout_process', 'custom_validate_ico');
+
+/**
+ * Update the value given in ICO field
+ */
+function checkout_update_order_meta_ico($order_id) {
+    if (!empty($_POST['ico'])) {
+        update_post_meta($order_id, 'ICO', sanitize_text_field($_POST['ico']));
+    }
+}
+add_action('woocommerce_checkout_update_order_meta', 'checkout_update_order_meta_ico');
+
+/**
+ * Display ICO field value on the order edit page
+ */
+function admin_order_meta_display_ico($order){
+        echo '<p><strong>'.__('IČO organizace').':</strong><br/>' . get_post_meta( $order->id, 'ICO', true ) . '</p>';
+}
+add_action( 'woocommerce_admin_order_data_after_shipping_address', 'admin_order_meta_display_ico', 10, 1 );
+
+/**
  * Add PR feedback field to the checkout page
  */
 function checkout_add_pr_feedback($checkout) {
@@ -106,7 +160,7 @@ add_action('woocommerce_checkout_process', 'checkout_check_pr_feedback');
  */
 function checkout_update_order_meta_pr_feedback($order_id) {
     if (!empty($_POST['pr_feedback'])) {
-        update_post_meta($order_id, 'PR feedback',sanitize_text_field($_POST['pr_feedback']));
+        update_post_meta($order_id, 'PR feedback', sanitize_text_field($_POST['pr_feedback']));
     }
 }
 add_action('woocommerce_checkout_update_order_meta', 'checkout_update_order_meta_pr_feedback');
