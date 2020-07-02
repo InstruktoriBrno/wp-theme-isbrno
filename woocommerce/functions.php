@@ -104,7 +104,7 @@ add_action('woocommerce_before_checkout_billing_form', 'checkout_add_ico');
 function custom_validate_ico() {
     $phone_no_whitespace = preg_replace('/\s/', '', $_POST['ico']);
     $is_correct = preg_match('/^[0-9]{8}$/', $_POST['ico']);
-    if ( !$is_correct) {
+    if ( !empty($_POST['ico']) && !$is_correct) {
         wc_add_notice( __( '<strong>Zadané IČO</strong> není platné (nemá osm číslic).' ), 'error' );
     }
 }
