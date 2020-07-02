@@ -52,17 +52,6 @@ function add_bootstrap_to_checkout_fields($fields) {
 add_filter('woocommerce_checkout_fields', 'add_bootstrap_to_checkout_fields' );
 
 /**
- * Adjust label for company name also asking for IC.
- */
-function wc_billing_field_strings( $translated_text, $text, $domain ) {
-    if ( 'woocommerce' === $domain && 'Company name' === $text ) {
-        $translated_text = 'Název firmy, IČO';
-    }
-    return $translated_text;
-}
-add_filter( 'gettext', 'wc_billing_field_strings', 999, 3 );
-
-/**
  * Add custom validation to the phone number
  */
 add_action('woocommerce_checkout_process', 'custom_validate_billing_phone');
