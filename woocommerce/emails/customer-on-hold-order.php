@@ -32,7 +32,7 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 } else {
 	echo '<ol>';
 	echo '<li>Nejprve prosím odešlete platbu za objednávku (detaily viz níže).</li>';
-	echo '<li>Po zaplacení objednávky kontaktujte Alču Pikulovou emailem na <a href="alena.pikulova@gmail.com">alena.pikulova@gmail.com</a> a domluvte se s ní na termínu vyzvednutí knihy. Preferovaný čas, kdy se pro knihu po domluvě můžete zastavit je úterý 10&ndash;11h nebo čtvrtek 17&ndash;18h.';
+	echo '<li>Po zaplacení objednávky kontaktujte Alču Pikulovou emailem na <a href="alena.pikulova@gmail.com">alena.pikulova@gmail.com</a> a domluvte se s ní na termínu vyzvednutí knihy. Preferovaný čas, kdy se pro knihu po domluvě můžete zastavit je pondělí 10&ndash;11h nebo čtvrtek 17&ndash;18h.';
 	echo '<li>Vyzvedněte si knížku dle domluvy. Adresa osobního vyzvednutí je <a href="https://mapy.cz/s/fagesetoga" target="_blank">Všetičkova 13, Brno</a>.</li>';
 	echo '</ol>';
 } ?>
