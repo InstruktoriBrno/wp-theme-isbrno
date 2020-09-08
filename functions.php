@@ -263,3 +263,12 @@ function pagination( $pages = '', $range = 4 ) {
 */
 function remove_protected_text() { return __('%s'); }
 add_filter( 'protected_title_format', 'remove_protected_text' );
+
+/** 
+ * Snippet Name: Add bootstrap classes for WP tables 
+ * Snippet URL: https://www.wpcustoms.net/snippets/add-bootstrap-classes-wp-tables/ 
+ */  
+function wpc_add_custom_table_class( $content ) {  
+	return str_replace( '<table>', '<table class="table table-hover">', $content );  
+}  
+add_filter( 'the_content', 'wpc_add_custom_table_class' );  
