@@ -16,9 +16,6 @@
 			<div class="row">
 				<div class="col-md-6 footer-is">
 					<?php dynamic_sidebar( 'footer-is' ); ?>
-					<form action="//instruktori.us8.list-manage.com/subscribe/post?u=a0d30eb97b6e9afe755e0ffbb&amp;id=1fd8b6c5af" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-						<input type="email" value="" name="EMAIL" class="mailchimp-email" id="mce-EMAIL" placeholder="Váš email"> &nbsp; <input type="submit" value="Přihlásit k odběru!" name="subscribe" id="mc-embedded-subscribe" class="red-button">
-					</form>
 				</div>
 				<div class="col-md-3">
 				<h3>
