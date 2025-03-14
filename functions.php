@@ -160,8 +160,9 @@ function remove_menus() {
 }
 add_action( 'admin_menu', 'remove_menus' );
 
+// 2025-03-14 Commented out when disabling the eShop
 // Include WooCommerce customizations
-require_once 'woocommerce/functions.php';
+//require_once 'woocommerce/functions.php';
 
 /* POVOLENÍ PSEUDOHTML ELEMENTŮ V WIDGET TITLE */
 
