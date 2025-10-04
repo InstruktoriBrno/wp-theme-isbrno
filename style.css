@@ -386,6 +386,12 @@ a h1.site-title  {
 	overflow: hidden;
 }
 
+#front-page-carousel .thumbnail-type-slider img {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
 #front-page-carousel .text-area {
 	position: absolute;
 	width: 100%;
