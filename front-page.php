@@ -161,7 +161,7 @@ get_header(); ?>
 							echo '<td class="hidden-xs">';
 
 							$terms         = get_the_terms( $post->ID, 'typ_akce' );
-							$count         = count( $terms );
+							$count         = is_array( $terms ) ? count( $terms ) : 0;
 							$category_list = '';
 							if ( $count > 0 ) {
 								$i = 1;
