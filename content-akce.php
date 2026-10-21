@@ -34,6 +34,7 @@ if ( ! empty( $akce_url ) ) {
 				<?php
 					$terms = get_the_terms( $post->ID, 'typ_akce' );
 					$count = is_array( $terms ) ? count( $terms ) : 0;
+					$category_list = '';
 				if ( $count > 0 && is_array( $terms ) ) {
 					$i = 1;
 					foreach ( $terms as $term ) {
@@ -46,7 +47,6 @@ if ( ! empty( $akce_url ) ) {
 					}
 				}
 					echo '<strong>Typ akce: </strong>' . $category_list . '<br/><br/>';
-					$category_list = '';
 				?>
 
 				<?php echo '<strong>Začátek:</strong> ' . date( 'd.m.Y', (int) $akce_from_timestamp ); ?>
