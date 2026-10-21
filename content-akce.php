@@ -33,7 +33,7 @@ if ( ! empty( $akce_url ) ) {
 				<?php the_title( '<h3>', '</h3>' ); ?>
 				<?php
 					$terms = get_the_terms( $post->ID, 'typ_akce' );
-					$count = count( $terms );
+					$count = is_array( $terms ) ? count( $terms ) : 0;
 				if ( $count > 0 && is_array( $terms ) ) {
 					$i = 1;
 					foreach ( $terms as $term ) {
@@ -49,7 +49,7 @@ if ( ! empty( $akce_url ) ) {
 					$category_list = '';
 				?>
 
-				<?php echo '<strong>Začátek:</strong> ' . date( 'd.m.Y', $akce_from_timestamp + 0 ); ?>
+				<?php echo '<strong>Začátek:</strong> ' . date( 'd.m.Y', (int) $akce_from_timestamp ); ?>
 				<?php 
 				if ( ! empty( $akce_from_time ) ) {
 					echo 'od ' . $akce_from_time;
